@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ social.brand_name }} | Products</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">{{ social.brand_name }}</div>
+        <div class="nav-links">
+            <span>Hi, {{ user.full_name }}</span>
+            {% if user.role == "admin" %}
+                <a href="/admin/dashboard">Admin Panel</a>
+            {% endif %}
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Our Products</h1>
+
+        {% if products|length == 0 %}
+            <div class="empty-state">No products added yet. Check back soon!</div>
+        {% else %}
+        <div class="product-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <img src="/static/assets/{{ product.image_filename }}" alt="{{ product.name }}">
+                <div class="product-info">
+                    <span class="category-tag">{{ product.category }}</span>
+                    <h3>{{ product.name }}</h3>
+                    <p class="desc">{{ product.description }}</p>
+                    <div class="price">Rs. {{ "%.0f"|format(product.price) }}</div>
+                    <a class="whatsapp-btn" target="_blank"
+                       href="https://wa.me/{{ social.whatsapp_number }}?text=Hi%2C%20I%27m%20interested%20in%20{{ product.name | urlencode }}">
+                        Order on WhatsApp
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="social-footer">
+        <h2>Connect with {{ social.brand_name }}</h2>
+        <div class="social-links">
+            <a href="{{ social.instagram }}" target="_blank">Instagram</a>
+            <a href="{{ social.facebook }}" target="_blank">Facebook</a>
+            <a href="https://wa.me/{{ social.whatsapp_number }}" target="_blank">WhatsApp</a>
+        </div>
+        <div class="qr-block">
+            <img src="{{ social.qr_code }}" alt="WhatsApp Channel QR Code">
+            <span>Scan to join our WhatsApp Channel</span>
+        </div>
+    </div>
+</body>
+</html>
