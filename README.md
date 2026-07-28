@@ -1,6 +1,6 @@
 # AKcollection — FastAPI Final Project
 
-A full-stack Python web application built with **FastAPI**, **SQLAlchemy (SQLite)**, and **Jinja2**, for the online handbag brand **AKcollection** (astore.pk / akcollection996).
+A full-stack Python web application built with **FastAPI**, **SQLAlchemy (SQLite)**, and **Jinja2**, for the online brand **AKcollection** (akcollection).
 
 ## Features
 
